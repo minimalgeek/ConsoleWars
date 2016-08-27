@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowMouseOrTilt : MonoBehaviour
+public class PlayerMover : MonoBehaviour
 {
     public float speed = 3.0f;
     public LayerMask floorMask;

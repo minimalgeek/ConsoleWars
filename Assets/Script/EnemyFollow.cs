@@ -2,7 +2,7 @@
 using System.Collections;
 using Assets.Script;
 
-public class FollowTargetPlayer : MonoBehaviour {
+public class EnemyFollow : MonoBehaviour {
 
     private Transform target;
     public float speed = 3.0f;

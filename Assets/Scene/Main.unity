@@ -673,6 +673,7 @@ GameObject:
   - 95: {fileID: 212467539}
   - 82: {fileID: 212467538}
   - 114: {fileID: 212467540}
+  - 135: {fileID: 212467541}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -762,7 +763,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3f84f4199e590c043abdaed89c3762d7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -862,6 +863,18 @@ MonoBehaviour:
   deathClip: {fileID: 8300000, guid: 35f3ecefe4506c845986044ee3fe375d, type: 3}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
+--- !u!135 &212467541
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212467532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &217259807
 GameObject:
   m_ObjectHideFlags: 0
@@ -5627,8 +5640,8 @@ GameObject:
   - 4: {fileID: 1918984245}
   - 54: {fileID: 1918984246}
   - 65: {fileID: 1918984247}
-  - 114: {fileID: 1918984244}
   - 95: {fileID: 1918984248}
+  - 114: {fileID: 1918984244}
   - 114: {fileID: 1918984250}
   - 114: {fileID: 1918984249}
   m_Layer: 0
