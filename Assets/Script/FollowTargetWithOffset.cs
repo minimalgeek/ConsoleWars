@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Utility
 {
-    public class FollowTarget : MonoBehaviour
+    public class FollowTargetWithOffset : MonoBehaviour
     {
         public Transform target;
         public float smoothTime = 1f;
