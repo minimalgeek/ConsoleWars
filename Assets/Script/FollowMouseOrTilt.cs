@@ -5,7 +5,7 @@ public class FollowMouseOrTilt : MonoBehaviour
 {
     public float speed = 3.0f;
     public LayerMask floorMask;
-    public float camRayLength = 100f;
+    public float camRayLength = 1000f;
     private Vector3 targetPosition;
     private Rigidbody myRigidBody;
 
@@ -16,12 +16,17 @@ public class FollowMouseOrTilt : MonoBehaviour
 
     void Update()
     {
-#if MOBILE_INPUT
-        FollowAccelerometer();
-#else
-        FollowMouse();
-#endif
+        if (Application.platform == RuntimePlatform.Android ||
+            Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            FollowAccelerometer();
+        }
+        else
+        {
+            FollowMouse();
+        }
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * speed);
     }
 
     private void FollowAccelerometer()
@@ -33,22 +38,19 @@ public class FollowMouseOrTilt : MonoBehaviour
 
     private void FollowMouse()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Create a ray from the mouse cursor on screen in the direction of the camera.
+        Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // Create a RaycastHit variable to store information about what was hit by the ray.
+        RaycastHit floorHit;
+        // Perform the raycast and if it hits something on the floor layer...
+        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
         {
-            // Create a ray from the mouse cursor on screen in the direction of the camera.
-            Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Create a vector from the player to the point on the floor the raycast from the mouse hit.
+            targetPosition = floorHit.point;
 
-            // Create a RaycastHit variable to store information about what was hit by the ray.
-            RaycastHit floorHit;
-            // Perform the raycast and if it hits something on the floor layer...
-            if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
-            {
-                // Create a vector from the player to the point on the floor the raycast from the mouse hit.
-                targetPosition = floorHit.point;
-
-                // Ensure the vector is entirely along the floor plane.
-                targetPosition.y = 0f;
-            }
+            // Ensure the vector is entirely along the floor plane.
+            targetPosition.y = 0f;
         }
     }
 }
