@@ -31,7 +31,7 @@ public class PlayerMover : MonoBehaviour
 
     private void FollowAccelerometer()
     {
-        targetPosition = new Vector3(Input.acceleration.x, 0, -Input.acceleration.z);
+        targetPosition = new Vector3(Input.acceleration.x, 0, Input.acceleration.y);
         targetPosition.Normalize();
         targetPosition += transform.position;
     }
