@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Gamelogic.Extensions;
 using Assets.Script;
 
 public class Shooter : MonoBehaviour

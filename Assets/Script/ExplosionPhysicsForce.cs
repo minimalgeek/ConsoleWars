@@ -1,3 +1,4 @@
+using Assets.Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,7 +34,10 @@ namespace UnityStandardAssets.Effects
             foreach (var rb in rigidbodies)
             {
                 rb.AddExplosionForce(explosionForce*multiplier, transform.position, r, 1*multiplier, ForceMode.Impulse);
-                Destroy(rb.gameObject, 1f);
+                if (rb.gameObject.tag != Constants.PLAYER_TAG)
+                {
+                    Destroy(rb.gameObject, 1f);
+                }
             }
             yield return new WaitForSeconds(boom.duration);
             Destroy(this.gameObject.transform.parent.gameObject);

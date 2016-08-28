@@ -18,7 +18,15 @@ public class PlayerHealth : MonoBehaviour
     private Shooter playerShooting;
     private bool isDead;
     private bool damaged;
-    
+
+    public bool IsDead
+    {
+        get
+        {
+            return isDead;
+        }
+    }
+
     void Awake()
     {
         anim = GetComponent<Animator>();

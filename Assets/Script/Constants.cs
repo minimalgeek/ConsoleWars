@@ -8,6 +8,7 @@ namespace Assets.Script
     public static class Constants
     {
         public static string PLAYER_TAG = "Player";
+        public static string SPAWN_ROOT_TAG = "SpawnRoot";
         public static string PLAYER_ANIM_THROW = "Throw";
     }
 }
