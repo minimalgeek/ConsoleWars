@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Gamelogic.Extensions;
+using Assets.Script;
 
 public class Shooter : MonoBehaviour
 {
@@ -7,12 +9,21 @@ public class Shooter : MonoBehaviour
     public float camRayLength = 1000f;
     public float rotationSpeed = 10f;
 
+    public GameObject grenade;
+    public Transform initPosition;
+    public float throwForce = 10f;
+
     private Rigidbody myRigidBody;
     private Quaternion newRotation = Quaternion.identity;
-
+    private Vector3 toThrowAtForce;
+    private GameObject player;
+    private Animator myAnimator;
+        
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
+        myAnimator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag(Constants.PLAYER_TAG);
     }
 
     void Update()
@@ -28,8 +39,22 @@ public class Shooter : MonoBehaviour
             if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
             {
                 newRotation = Quaternion.LookRotation(floorHit.point - transform.position);
+                toThrowAtForce = floorHit.point - transform.position;
+                myAnimator.SetTrigger(Constants.PLAYER_ANIM_THROW);
             }
         }
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public void Shoot()
+    {
+        GameObject newGO = Instantiate(grenade);
+        newGO.transform.position = initPosition.position;
+        newGO.transform.localRotation = player.transform.rotation;
+
+        newGO.GetComponent<Rigidbody>().AddForce(
+            new Vector3(toThrowAtForce.x/2, throwForce, toThrowAtForce.z/2), 
+            ForceMode.Impulse);
+        newGO.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(0f, throwForce), Random.Range(0f, throwForce), Random.Range(0f, throwForce)));
     }
 }

@@ -166,6 +166,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &139304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 403300}
+  m_Layer: 0
+  m_Name: GrenadeInitPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &139878
 GameObject:
   m_ObjectHideFlags: 1
@@ -456,6 +471,19 @@ Transform:
   m_Children:
   - {fileID: 472534}
   m_Father: {fileID: 420228}
+  m_RootOrder: 1
+--- !u!4 &403300
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 3.7, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 499718}
   m_RootOrder: 1
 --- !u!4 &405704
 Transform:
@@ -820,6 +848,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 488326}
+  - {fileID: 403300}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!54 &5478780
@@ -1007,6 +1036,9 @@ MonoBehaviour:
     m_Bits: 256
   camRayLength: 1000
   rotationSpeed: 10
+  grenade: {fileID: 161992, guid: 07cde69b2f5b9d94bb3584ac92445e5a, type: 2}
+  initPosition: {fileID: 403300}
+  throwForce: 5
 --- !u!135 &13533796
 SphereCollider:
   m_ObjectHideFlags: 1
