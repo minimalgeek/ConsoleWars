@@ -9,7 +9,6 @@ public class EnemyAttack : MonoBehaviour
 
     private GameObject player;
     private PlayerHealth playerHealth;
-    private EnemyHealth enemyHealth;
     private bool playerInRange;
     private float timer;
 
@@ -17,7 +16,6 @@ public class EnemyAttack : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag(Constants.PLAYER_TAG);
         playerHealth = player.GetComponent<PlayerHealth>();
-        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -42,7 +40,7 @@ public class EnemyAttack : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+        if (timer >= timeBetweenAttacks && playerInRange)
         {
             Attack();
         }
