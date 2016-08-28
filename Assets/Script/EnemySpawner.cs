@@ -27,7 +27,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         while (!playerHealth.IsDead)
         {
-            GameObject inst = (GameObject)Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length - 1)], this.transform.position, Quaternion.identity);
+            GameObject inst = (GameObject)Instantiate(enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)], this.transform.position, Quaternion.identity);
             inst.transform.parent = placeToMoveInHierarchy.transform;
             yield return new WaitForSeconds(spawnTime);
             if (spawnTime > minSpawnTime)

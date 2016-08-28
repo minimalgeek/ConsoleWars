@@ -9,6 +9,7 @@ namespace UnityStandardAssets.Effects
     public class ExplosionPhysicsForce : MonoBehaviour
     {
         public float explosionForce = 4;
+        public float range = 6f;
         public float destroyTime = 3f;
         public ParticleSystem boom;
         
@@ -21,7 +22,7 @@ namespace UnityStandardAssets.Effects
             boom.gameObject.SetActive(true);
             float multiplier = GetComponent<ParticleSystemMultiplier>().multiplier;
 
-            float r = 10*multiplier;
+            float r = range * multiplier;
             var cols = Physics.OverlapSphere(transform.position, r);
             var rigidbodies = new List<Rigidbody>();
             foreach (var col in cols)
@@ -36,6 +37,7 @@ namespace UnityStandardAssets.Effects
                 rb.AddExplosionForce(explosionForce*multiplier, transform.position, r, 1*multiplier, ForceMode.Impulse);
                 if (rb.gameObject.tag != Constants.PLAYER_TAG)
                 {
+                    rb.AddTorque(new Vector3(0, 1000, 0), ForceMode.Impulse);
                     Destroy(rb.gameObject, 1f);
                 }
             }

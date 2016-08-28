@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator anim;
     private AudioSource playerAudio;
     private PlayerMover playerMover;
+    private GameManager gameManager;
     private Shooter playerShooting;
     private bool isDead;
     private bool damaged;
@@ -33,6 +34,7 @@ public class PlayerHealth : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         playerMover = GetComponent<PlayerMover>();
         playerShooting = GetComponentInChildren<Shooter>();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
 
         currentHealth = startingHealth;
     }
@@ -69,12 +71,11 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
-        anim.SetTrigger("Death");
-
         playerAudio.clip = deathClip;
         playerAudio.Play();
 
         playerMover.enabled = false;
         playerShooting.enabled = false;
+        gameManager.GameOver();
     }
 }
